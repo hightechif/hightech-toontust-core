@@ -1,0 +1,17 @@
+@startuml
+
+actor "User" as user
+node "toontust-core" {
+    component "Controller" as controller
+    component "Service" as service
+    component "Repository" as repository
+}
+
+database "PostgreSQL" as database
+
+user <--> controller
+controller <--> service
+service <--> repository
+repository <--> database
+
+@enduml
