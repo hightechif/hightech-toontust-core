@@ -1,0 +1,12 @@
+version: '3.5'
+
+services:
+  hightech-toontust-core:
+    container_name: "hightech-toontust-core"
+    image: postgres:12-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: hightech
+      POSTGRES_USER: hightech
+      POSTGRES_DB: toontust-core-db
