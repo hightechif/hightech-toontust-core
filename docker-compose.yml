@@ -1,8 +1,8 @@
 version: '3.5'
 
 services:
-  hightech-toontust-core:
-    container_name: "hightech-toontust-core"
+  toontust-core:
+    container_name: "toontust-core"
     image: postgres:12-alpine
     ports:
       - 5432:5432
