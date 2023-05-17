@@ -1,8 +1,25 @@
 package hightech.toontust.core.dto.request
 
+import javax.validation.constraints.Min
+import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotNull
+
 data class CreateProductRequestDTO(
-    val id: String,
-    val name: String,
-    val price: Long,
-    val quantity: Int
+
+    @field:NotNull
+    @field:NotBlank
+    val id: String?,
+
+    @field:NotNull
+    @field:NotBlank
+    val name: String?,
+
+    @field:NotNull
+    @field:Min(value = 1)
+    val price: Long?,
+
+    @field:NotNull
+    @field:Min(value = 0)
+    val quantity: Int?
+
 )

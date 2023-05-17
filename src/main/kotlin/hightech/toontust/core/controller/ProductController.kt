@@ -21,7 +21,8 @@ class ProductController(private val productService: IProductService) {
         return GeneralWrapper(
             code = 200,
             status = "OK",
-            data = productResponse
+            data = productResponse,
+            message = null
         )
     }
 
