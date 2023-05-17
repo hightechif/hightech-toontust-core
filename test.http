@@ -1,15 +1,17 @@
+### Create Product
+
 POST http://localhost:8080/api/v1/products
 Content-Type: application/json
 Accept: application/json
 
 {
-  "id": "A001",
+  "id": "A0001",
   "name": "MacBook Pro 14",
   "price": 30000000,
   "quantity": 10
 }
 
-###
+### Create Product Invalid
 
 POST http://localhost:8080/api/v1/products
 Content-Type: application/json
@@ -20,4 +22,50 @@ Accept: application/json
   "name": "",
   "price": 0,
   "quantity": -10
+}
+
+### Get Product
+
+GET http://localhost:8080/api/v1/products/A0001
+Accept: application/json
+
+### Get Product Not Found
+
+GET http://localhost:8080/api/v1/products/A0002
+Accept: application/json
+
+### Update Product
+
+PUT http://localhost:8080/api/v1/products/A0001
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "MacBook Pro 16",
+  "price": 35000000,
+  "quantity": 8
+}
+
+### Update Product Not Found
+
+PUT http://localhost:8080/api/v1/products/INVALID
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "MacBook Pro 16",
+  "price": 35000000,
+  "quantity": 8
+}
+
+### Update Product with invalid body
+
+PUT http://localhost:8080/api/v1/products/A0001
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "",
+  "price": 0,
+  "quantity": -6
 }

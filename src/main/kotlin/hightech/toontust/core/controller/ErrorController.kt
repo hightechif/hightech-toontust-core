@@ -1,6 +1,7 @@
 package hightech.toontust.core.controller
 
 import hightech.toontust.core.dto.response.base.GeneralWrapper
+import hightech.toontust.core.error.NotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -18,6 +19,17 @@ class ErrorController {
             data = null,
             message = constraintViolationException.message
         ), HttpStatus.BAD_REQUEST)
+    }
+
+    @ExceptionHandler(value = [NotFoundException::class])
+    fun notFound(notFoundException: NotFoundException): ResponseEntity<GeneralWrapper<Nothing?>> {
+        return ResponseEntity(
+            GeneralWrapper(
+            code = 404,
+            status = "NOT FOUND",
+            data = null,
+            message = "Not Found"
+        ), HttpStatus.NOT_FOUND)
     }
 
 }
