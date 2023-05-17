@@ -7,6 +7,7 @@ import hightech.toontust.core.dto.response.base.GeneralWrapper
 import hightech.toontust.core.service.IProductService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -68,6 +69,22 @@ class ProductController(private val productService: IProductService) {
                 status = "OK",
                 data = productResponse,
                 message = null
+            ), HttpStatus.OK
+        )
+    }
+
+    @DeleteMapping(
+        value = ["/products/{idProduct}"],
+        produces = ["application/json"]
+    )
+    fun deleteProduct(@PathVariable("idProduct") id: String): ResponseEntity<GeneralWrapper<Nothing?>> {
+        productService.delete(id)
+        return ResponseEntity(
+            GeneralWrapper(
+                code = 200,
+                status = "OK",
+                data = null,
+                message = "Product with id=$id is deleted."
             ), HttpStatus.OK
         )
     }

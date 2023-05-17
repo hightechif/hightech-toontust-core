@@ -32,13 +32,13 @@ class ProductService(
     }
 
     override fun get(id: String): ProductResponseDTO {
-        val product = productRepository.findByIdOrNull(id) ?: throw NotFoundException()
+        val product = findProductByIdOrThrowNotFound(id)
         return convertProductEntityToResponseDTO(product)
     }
 
     override fun update(id: String, updateProductRequest: UpdateProductRequestDTO): ProductResponseDTO {
         validationUtil.validate(updateProductRequest)
-        val product = productRepository.findByIdOrNull(id) ?: throw NotFoundException()
+        val product = findProductByIdOrThrowNotFound(id)
         product.apply {
             name = updateProductRequest.name!!
             price = updateProductRequest.price!!
@@ -47,6 +47,15 @@ class ProductService(
         }
         productRepository.save(product)
         return convertProductEntityToResponseDTO(product)
+    }
+
+    override fun delete(id: String) {
+        val product = findProductByIdOrThrowNotFound(id)
+        productRepository.delete(product)
+    }
+
+    private fun findProductByIdOrThrowNotFound(id: String): Product {
+        return productRepository.findByIdOrNull(id) ?: throw NotFoundException()
     }
 
     private fun convertProductEntityToResponseDTO(product: Product): ProductResponseDTO {

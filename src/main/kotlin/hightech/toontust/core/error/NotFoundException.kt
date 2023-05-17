@@ -1,4 +1,3 @@
 package hightech.toontust.core.error
 
-class NotFoundException : Exception() {
-}
+class NotFoundException : Exception()

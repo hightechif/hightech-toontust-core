@@ -12,4 +12,6 @@ interface IProductService {
 
     fun update(id: String, updateProductRequest: UpdateProductRequestDTO): ProductResponseDTO
 
+    fun delete(id: String)
+
 }
