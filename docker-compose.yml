@@ -1,8 +1,8 @@
 version: '3.5'
 
 services:
-  toontust-core:
-    container_name: "toontust-core"
+  toontust-core-postgres:
+    container_name: "toontust-core-postgres"
     image: postgres:12-alpine
     ports:
       - 5432:5432
