@@ -1,6 +1,6 @@
 package hightech.toontust.core.repository
 
-import hightech.toontust.core.entity.Product
+import hightech.toontust.core.entity.ApiKey
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface ProductRepository : JpaRepository<Product, String>
+interface ApiKeyRepository : JpaRepository<ApiKey, String>

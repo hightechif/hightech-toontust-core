@@ -1,6 +1,7 @@
 ### Create Product
 
 POST http://localhost:8080/api/v1/products
+X-Api-Key: SECRET
 Content-Type: application/json
 Accept: application/json
 
@@ -14,6 +15,7 @@ Accept: application/json
 ### Create Product Invalid
 
 POST http://localhost:8080/api/v1/products
+X-Api-Key: SECRET
 Content-Type: application/json
 Accept: application/json
 
@@ -27,16 +29,19 @@ Accept: application/json
 ### Get Product
 
 GET http://localhost:8080/api/v1/products/A0001
+X-Api-Key: SECRET
 Accept: application/json
 
 ### Get Product Not Found
 
 GET http://localhost:8080/api/v1/products/A0002
+X-Api-Key: SECRET
 Accept: application/json
 
 ### Update Product
 
 PUT http://localhost:8080/api/v1/products/A0001
+X-Api-Key: SECRET
 Content-Type: application/json
 Accept: application/json
 
@@ -49,6 +54,7 @@ Accept: application/json
 ### Update Product Not Found
 
 PUT http://localhost:8080/api/v1/products/INVALID
+X-Api-Key: SECRET
 Content-Type: application/json
 Accept: application/json
 
@@ -61,6 +67,7 @@ Accept: application/json
 ### Update Product with invalid body
 
 PUT http://localhost:8080/api/v1/products/A0001
+X-Api-Key: SECRET
 Content-Type: application/json
 Accept: application/json
 
@@ -73,19 +80,34 @@ Accept: application/json
 ### Delete Product
 
 DELETE http://localhost:8080/api/v1/products/A0001
+X-Api-Key: SECRET
 Accept: application/json
 
 ### List Product
 
 GET http://localhost:8080/api/v1/products
+X-Api-Key: SECRET
 Accept: application/json
 
 ### List Product with size parameter
 
 GET http://localhost:8080/api/v1/products?size=5
+X-Api-Key: SECRET
 Accept: application/json
 
 ### List Product with size & page parameter
 
 GET http://localhost:8080/api/v1/products?size=5&page=1
+X-Api-Key: SECRET
+Accept: application/json
+
+### Request without X-Api-Key
+
+GET http://localhost:8080/api/v1/products
+Accept: application/json
+
+### Request with invalid X-Api-Key
+
+GET http://localhost:8080/api/v1/products
+X-Api-Key: SALAH
 Accept: application/json
