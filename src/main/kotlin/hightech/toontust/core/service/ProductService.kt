@@ -1,15 +1,18 @@
 package hightech.toontust.core.service
 
 import hightech.toontust.core.dto.request.CreateProductRequestDTO
+import hightech.toontust.core.dto.request.ListProductRequestDTO
 import hightech.toontust.core.dto.request.UpdateProductRequestDTO
 import hightech.toontust.core.dto.response.ProductResponseDTO
 import hightech.toontust.core.entity.Product
 import hightech.toontust.core.error.NotFoundException
 import hightech.toontust.core.repository.ProductRepository
 import hightech.toontust.core.validation.ValidationUtil
+import org.springframework.data.domain.PageRequest
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import java.util.Date
+import java.util.stream.Collectors
 
 @Service
 class ProductService(
@@ -52,6 +55,12 @@ class ProductService(
     override fun delete(id: String) {
         val product = findProductByIdOrThrowNotFound(id)
         productRepository.delete(product)
+    }
+
+    override fun list(listProductRequest: ListProductRequestDTO): List<ProductResponseDTO> {
+        val page = productRepository.findAll(PageRequest.of(listProductRequest.page, listProductRequest.size))
+        val products: List<Product> = page.get().collect(Collectors.toList())
+        return products.map { convertProductEntityToResponseDTO(it) }
     }
 
     private fun findProductByIdOrThrowNotFound(id: String): Product {

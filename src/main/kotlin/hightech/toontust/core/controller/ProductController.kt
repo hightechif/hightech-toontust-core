@@ -1,6 +1,7 @@
 package hightech.toontust.core.controller
 
 import hightech.toontust.core.dto.request.CreateProductRequestDTO
+import hightech.toontust.core.dto.request.ListProductRequestDTO
 import hightech.toontust.core.dto.request.UpdateProductRequestDTO
 import hightech.toontust.core.dto.response.ProductResponseDTO
 import hightech.toontust.core.dto.response.base.GeneralWrapper
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -86,6 +88,27 @@ class ProductController(private val productService: IProductService) {
                 data = null,
                 message = "Product with id=$id is deleted."
             ), HttpStatus.OK
+        )
+    }
+
+    @GetMapping(
+        value = ["/products"],
+        produces = ["application/json"]
+    )
+    fun listProduct(
+        @RequestParam(value = "page", defaultValue = "0") page: Int,
+        @RequestParam(value = "size", defaultValue = "10") size: Int
+    ): ResponseEntity<GeneralWrapper<List<ProductResponseDTO>>> {
+        val request = ListProductRequestDTO(page, size)
+        val response = productService.list(request)
+        return ResponseEntity(
+            GeneralWrapper(
+                code = 200,
+                status = "OK",
+                data = response,
+                message = null
+            ),
+            HttpStatus.OK
         )
     }
 

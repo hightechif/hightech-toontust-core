@@ -74,3 +74,18 @@ Accept: application/json
 
 DELETE http://localhost:8080/api/v1/products/A0001
 Accept: application/json
+
+### List Product
+
+GET http://localhost:8080/api/v1/products
+Accept: application/json
+
+### List Product with size parameter
+
+GET http://localhost:8080/api/v1/products?size=5
+Accept: application/json
+
+### List Product with size & page parameter
+
+GET http://localhost:8080/api/v1/products?size=5&page=1
+Accept: application/json
