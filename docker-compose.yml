@@ -1,6 +1,15 @@
 version: '3.5'
 
 services:
+  toontust-core:
+    container_name: "toontust-core"
+    image: toontust-core:0.0.1
+    ports:
+      - 8080:8080
+    environment:
+      DATABASE_USERNAME: hightech
+      DATABASE_PASSWORD: hightech
+      DATABASE_URL: jdbc:postgresql://toontust-core-postgres:5432/toontust-core-db
   toontust-core-postgres:
     container_name: "toontust-core-postgres"
     image: postgres:12-alpine
